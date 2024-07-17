@@ -3,4 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Assistant", sans-serif;
+  font-size: 14px;
+  color: #282c3f;
+  -webkit-font-smoothing: antialiased;
 }

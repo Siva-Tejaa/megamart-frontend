@@ -1,14 +1,19 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.css";
 
+//Fallback UI
+import FallbackUI from "./components/LoadingIndicator/FallbackUI";
+
 //Pages
-import HomePage from "./pages/HomePage";
+const HomePage = React.lazy(() => import("./pages/HomePage"));
 
 const App = () => {
   return (
-    <div>
-      <HomePage />
-    </div>
+    <Suspense fallback={<FallbackUI />}>
+      <div>
+        <HomePage />
+      </div>
+    </Suspense>
   );
 };
 

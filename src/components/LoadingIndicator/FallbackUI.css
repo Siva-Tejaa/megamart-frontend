@@ -1,0 +1,25 @@
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 12px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  animation: l5 1s infinite linear alternate;
+}
+@keyframes l5 {
+  0% {
+    box-shadow: 20px 0 #f51cb3, -20px 0 #fe9130;
+    background: #f51cb3;
+  }
+  33% {
+    box-shadow: 20px 0 #fe9130, -20px 0 #f25512;
+    background: #fe9130;
+  }
+  66% {
+    box-shadow: 20px 0 #f25512, -20px 0 #f51cb3;
+    background: #f25512;
+  }
+  100% {
+    box-shadow: 20px 0 #f51cb3, -20px 0 #f51cb3;
+    background: #f51cb3;
+  }
+}
