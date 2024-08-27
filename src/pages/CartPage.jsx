@@ -1,12 +1,13 @@
 import React from "react";
 import Header from "../components/Header";
+import EmptyCart from "../components/EmptyCart";
 
 const CartPage = () => {
   return (
-    <div>
+    <>
       <Header />
-      <p>Cart Page</p>
-    </div>
+      <EmptyCart />
+    </>
   );
 };
 

@@ -21,7 +21,7 @@ export const navItems = [
     id: 3,
     name: "Bag",
     icon: <HiOutlineShoppingBag style={{ fontSize: "1.3em" }} />,
-    link: "/checkout/cart",
+    link: "/cart",
   },
 ];
 
