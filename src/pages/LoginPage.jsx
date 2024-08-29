@@ -59,7 +59,7 @@ const LoginPage = () => {
 
           <button
             type="submit"
-            className="text-white font-bold uppercase bg-[#ff3f6c] p-2 rounded-sm"
+            className="text-white font-bold uppercase bg-[#ff3f6c] p-[9px] rounded-sm"
           >
             Login
           </button>

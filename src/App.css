@@ -7,3 +7,24 @@
   color: #282c3f;
   -webkit-font-smoothing: antialiased;
 }
+
+/* Loader css */
+.loader {
+  width: 27px;
+  height: 27px;
+  border: 3px solid #fff;
+  border-bottom-color: #ff3f6c;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

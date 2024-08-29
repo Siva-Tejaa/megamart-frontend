@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import { MegaMartLogo } from "../assets/images/imageImports";
+
+import { API_END_POINTS } from "../config/apiConfig";
+import axios from "axios";
 
 const SignupPage = () => {
   const initialValues = {
@@ -14,6 +16,8 @@ const SignupPage = () => {
   };
 
   const [signupData, setSignUpData] = useState(initialValues);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const {
     firstName,
@@ -25,13 +29,38 @@ const SignupPage = () => {
   } = signupData;
 
   const changeHandler = (e) => {
+    setError(null);
     setSignUpData({ ...signupData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(signupData);
-    setSignUpData(initialValues);
+    setLoading(true);
+
+    if (password !== confirmPassword) {
+      alert("Password and Confirm Password do not match.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const formattedSignupData = {
+        ...signupData,
+        mobileNumber: Number(signupData.mobileNumber),
+      };
+
+      const response = await axios.post(
+        API_END_POINTS?.AUTH?.SIGNUP,
+        formattedSignupData
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error?.response?.data?.message);
+      setError(error?.response?.data?.message);
+    } finally {
+      setLoading(false);
+      setSignUpData(initialValues);
+    }
   };
 
   return (
@@ -109,10 +138,14 @@ const SignupPage = () => {
             value={confirmPassword}
             placeholder="Confirm password"
             onChange={changeHandler}
+            minLength="6"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
             title="Confirm Password is required, must be at least 6 characters and should be same as password field."
             className="border border-solid border-[#D4D5D9] p-2 caret-[#ff3f6c] outline-0 rounded-sm"
             required
           />
+          {error && <p className="text-sm text-[#f14040]">{error}</p>}
+
           <p>
             By continuing, I agree to the{" "}
             <Link to="/termsofuse" className="text-[#ff3f6c]">
@@ -126,9 +159,14 @@ const SignupPage = () => {
 
           <button
             type="submit"
-            className="text-white font-bold uppercase bg-[#ff3f6c] p-2 rounded-sm"
+            disabled={loading}
+            className={
+              loading
+                ? "text-white font-bold uppercase bg-[#f57d99] pt-[6px] pb-0 rounded-sm"
+                : "text-white font-bold uppercase bg-[#ff3f6c] p-[9px] rounded-sm"
+            }
           >
-            Signup
+            {loading ? <span class="loader"></span> : "Signup"}
           </button>
 
           <p>

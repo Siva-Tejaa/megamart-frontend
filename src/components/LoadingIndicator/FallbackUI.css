@@ -1,5 +1,5 @@
 /* HTML: <div class="loader"></div> */
-.loader {
+.fallback-loader {
   width: 12px;
   aspect-ratio: 1;
   border-radius: 50%;
