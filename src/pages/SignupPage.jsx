@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MegaMartLogo } from "../assets/images/imageImports";
 
 import { API_END_POINTS } from "../config/apiConfig";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import usePostAPI from "../hooks/usePostAPI";
 
 const SignupPage = () => {
+  const navigate = useNavigate();
+
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -16,8 +19,6 @@ const SignupPage = () => {
   };
 
   const [signupData, setSignUpData] = useState(initialValues);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const {
     firstName,
@@ -28,6 +29,8 @@ const SignupPage = () => {
     confirmPassword,
   } = signupData;
 
+  const { loading, data, error, setError, postData } = usePostAPI();
+
   const changeHandler = (e) => {
     setError(null);
     setSignUpData({ ...signupData, [e.target.name]: e.target.value });
@@ -35,33 +38,27 @@ const SignupPage = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
     if (password !== confirmPassword) {
       alert("Password and Confirm Password do not match.");
-      setLoading(false);
       return;
     }
 
-    try {
-      const formattedSignupData = {
-        ...signupData,
-        mobileNumber: Number(signupData.mobileNumber),
-      };
+    const formattedSignupData = {
+      ...signupData,
+      mobileNumber: Number(signupData.mobileNumber),
+    };
 
-      const response = await axios.post(
-        API_END_POINTS?.AUTH?.SIGNUP,
-        formattedSignupData
-      );
-      console.log(response.data);
-    } catch (error) {
-      console.log(error?.response?.data?.message);
-      setError(error?.response?.data?.message);
-    } finally {
-      setLoading(false);
-      setSignUpData(initialValues);
-    }
+    await postData(API_END_POINTS?.AUTH?.SIGNUP, formattedSignupData);
   };
+
+  useEffect(() => {
+    if (data?.success) {
+      setSignUpData(initialValues);
+      navigate("/");
+      console.log(data);
+    }
+  }, [data]);
 
   return (
     <div className="h-[100svh] flex items-center justify-center bg-[#FDEFEB]">
@@ -144,7 +141,11 @@ const SignupPage = () => {
             className="border border-solid border-[#D4D5D9] p-2 caret-[#ff3f6c] outline-0 rounded-sm"
             required
           />
-          {error && <p className="text-sm text-[#f14040]">{error}</p>}
+          {error && (
+            <p className="text-sm text-[#f14040]">
+              {error?.response?.data?.message}
+            </p>
+          )}
 
           <p>
             By continuing, I agree to the{" "}
@@ -166,7 +167,7 @@ const SignupPage = () => {
                 : "text-white font-bold uppercase bg-[#ff3f6c] p-[9px] rounded-sm"
             }
           >
-            {loading ? <span class="loader"></span> : "Signup"}
+            {loading ? <span className="loader"></span> : "Signup"}
           </button>
 
           <p>

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { MegaMartLogo } from "../assets/images/imageImports";
+
+import { API_END_POINTS } from "../config/apiConfig";
+import usePostAPI from "../hooks/usePostAPI";
 
 const LoginPage = () => {
   const initialValues = {
@@ -13,15 +16,25 @@ const LoginPage = () => {
 
   const { email, password } = loginData;
 
+  const { loading, data, error, setError, postData } = usePostAPI();
+
   const changeHandler = (e) => {
+    setError(null);
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(loginData);
-    setLoginData(initialValues);
+
+    await postData(API_END_POINTS?.AUTH?.SIGNIN, loginData);
   };
+
+  useEffect(() => {
+    if (data?.success) {
+      setLoginData(initialValues);
+      console.log(data);
+    }
+  }, [data]);
 
   return (
     <div className="h-[100svh] flex items-center justify-center bg-[#FDEFEB]">
@@ -53,15 +66,27 @@ const LoginPage = () => {
             className="w-[100%] border border-solid border-[#D4D5D9] p-2 caret-[#ff3f6c] outline-0 rounded-sm"
             required
           />
+
+          {error && (
+            <p className="text-sm text-[#f14040]">
+              {error?.response?.data?.message}
+            </p>
+          )}
+
           <Link to="/forgotpassword" className="text-[#ff3f6c]">
             Forgot Password ?
           </Link>
 
           <button
             type="submit"
-            className="text-white font-bold uppercase bg-[#ff3f6c] p-[9px] rounded-sm"
+            disabled={loading}
+            className={
+              loading
+                ? "text-white font-bold uppercase bg-[#f57d99] pt-[6px] pb-0 rounded-sm"
+                : "text-white font-bold uppercase bg-[#ff3f6c] p-[9px] rounded-sm"
+            }
           >
-            Login
+            {loading ? <span className="loader"></span> : "Login"}
           </button>
 
           <p>

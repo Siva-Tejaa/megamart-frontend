@@ -14,7 +14,7 @@ const usePostAPI = () => {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          Authorization: `Bearer ${authToken}`,
+          Authorization: authToken ? `Bearer ${authToken}` : undefined,
         },
       });
       setData(response.data);
@@ -25,7 +25,7 @@ const usePostAPI = () => {
     }
   };
 
-  return { loading, data, error, postData };
+  return { loading, setLoading, data, error, setError, postData };
 };
 
 export default usePostAPI;
