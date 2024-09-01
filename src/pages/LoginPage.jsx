@@ -5,6 +5,7 @@ import { MegaMartLogo } from "../assets/images/imageImports";
 
 import { API_END_POINTS } from "../config/apiConfig";
 import usePostAPI from "../hooks/usePostAPI";
+import { setItem } from "../components/utils/localStorageUtils";
 
 const LoginPage = () => {
   const initialValues = {
@@ -32,7 +33,7 @@ const LoginPage = () => {
   useEffect(() => {
     if (data?.success) {
       setLoginData(initialValues);
-      console.log(data);
+      setItem("user", data?.data);
     }
   }, [data]);
 

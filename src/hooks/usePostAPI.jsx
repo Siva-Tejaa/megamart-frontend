@@ -15,6 +15,7 @@ const usePostAPI = () => {
           "Content-Type": "application/json",
           Accept: "application/json",
           Authorization: authToken ? `Bearer ${authToken}` : undefined,
+          withCredentials: true,
         },
       });
       setData(response.data);
