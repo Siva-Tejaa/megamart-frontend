@@ -14,7 +14,7 @@ export const useLogin = () => {
       const user = response?.data?.data;
       dispatch(loginSuccess(user));
       setItem("user", user);
-      navigate("/");
+      navigate("/", { replace: true });
     },
   });
 };

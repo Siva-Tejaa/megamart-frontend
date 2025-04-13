@@ -21,19 +21,36 @@ const WishListPage = React.lazy(() => import("./pages/WishListPage"));
 const CartPage = React.lazy(() => import("./pages/CartPage"));
 const NotFoundPage = React.lazy(() => import("./pages/NotFoundPage"));
 
+// Layouts
+import PublicLayout from "./layouts/PublicLayout";
+import ProtectedLayout from "./layouts/ProtectedLayout";
+// import ProtectedRoute from './ProtectedRoute'; // ProtectedRoute for role-based access control
+
 const App = () => {
   return (
     <Suspense fallback={<FallbackUI />}>
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/signup" element={<SignupPage />} />
-        <Route exact path="/termsofuse" element={<TermsofUse />} />
-        <Route exact path="/privacypolicy" element={<PrivacyPolicy />} />
-        <Route exact path="/login" element={<LoginPage />} />
-        <Route exact path="/forgotpassword" element={<ForgotPasswordPage />} />
-        <Route exact path="/search/:searchText" element={<SearchPage />} />
-        <Route exact path="/wishlist" element={<WishListPage />} />
-        <Route exact path="/cart" element={<CartPage />} />
+        {/* Public Routes (no authentication required) */}
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            exact
+            path="/forgotpassword"
+            element={<ForgotPasswordPage />}
+          />
+          <Route exact path="/termsofuse" element={<TermsofUse />} />
+          <Route exact path="/privacypolicy" element={<PrivacyPolicy />} />
+          <Route exact path="/search/:searchText" element={<SearchPage />} />
+        </Route>
+
+        {/* Protected Routes (authentication required) */}
+        <Route element={<ProtectedLayout />}>
+          <Route exact path="/wishlist" element={<WishListPage />} />
+          <Route exact path="/cart" element={<CartPage />} />
+        </Route>
+
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
