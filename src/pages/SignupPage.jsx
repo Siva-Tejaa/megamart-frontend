@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { MegaMartLogo } from "../assets/images/imageImports";
-
-import { API_END_POINTS } from "../config/apiConfig";
-import { useNavigate } from "react-router-dom";
-import usePostAPI from "../hooks/usePostAPI";
+import { useSignup } from "../services/hooks/useAuth";
 
 const SignupPage = () => {
-  const navigate = useNavigate();
-
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -29,36 +24,24 @@ const SignupPage = () => {
     confirmPassword,
   } = signupData;
 
-  const { loading, data, error, setError, postData } = usePostAPI();
+  const { mutate: signup, isPending, error } = useSignup();
 
   const changeHandler = (e) => {
-    setError(null);
     setSignUpData({ ...signupData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-
     if (password !== confirmPassword) {
       alert("Password and Confirm Password do not match.");
       return;
     }
-
     const formattedSignupData = {
       ...signupData,
       mobileNumber: Number(signupData.mobileNumber),
     };
-
-    await postData(API_END_POINTS?.AUTH?.SIGNUP, formattedSignupData);
+    signup(formattedSignupData);
   };
-
-  useEffect(() => {
-    if (data?.success) {
-      setSignUpData(initialValues);
-      navigate("/");
-      console.log(data);
-    }
-  }, [data]);
 
   return (
     <div className="h-[100svh] flex items-center justify-center bg-[#FDEFEB]">
@@ -160,14 +143,14 @@ const SignupPage = () => {
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={isPending}
             className={
-              loading
+              isPending
                 ? "text-white font-bold uppercase bg-[#f57d99] pt-[6px] pb-0 rounded-sm"
                 : "text-white font-bold uppercase bg-[#ff3f6c] p-[9px] rounded-sm"
             }
           >
-            {loading ? <span className="loader"></span> : "Signup"}
+            {isPending ? <span className="loader"></span> : "Signup"}
           </button>
 
           <p>

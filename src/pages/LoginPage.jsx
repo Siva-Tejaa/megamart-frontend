@@ -1,11 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import { MegaMartLogo } from "../assets/images/imageImports";
-
-import { API_END_POINTS } from "../config/apiConfig";
-import usePostAPI from "../hooks/usePostAPI";
-import { setItem } from "../components/utils/localStorageUtils";
+import { useLogin } from "../services/hooks/useAuth";
 
 const LoginPage = () => {
   const initialValues = {
@@ -17,25 +13,16 @@ const LoginPage = () => {
 
   const { email, password } = loginData;
 
-  const { loading, data, error, setError, postData } = usePostAPI();
+  const { mutate: login, isPending, error } = useLogin();
 
   const changeHandler = (e) => {
-    setError(null);
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-
-    await postData(API_END_POINTS?.AUTH?.SIGNIN, loginData);
+    login(loginData);
   };
-
-  useEffect(() => {
-    if (data?.success) {
-      setLoginData(initialValues);
-      setItem("user", data?.data);
-    }
-  }, [data]);
 
   return (
     <div className="h-[100svh] flex items-center justify-center bg-[#FDEFEB]">
@@ -80,14 +67,14 @@ const LoginPage = () => {
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={isPending}
             className={
-              loading
+              isPending
                 ? "text-white font-bold uppercase bg-[#f57d99] pt-[6px] pb-0 rounded-sm"
                 : "text-white font-bold uppercase bg-[#ff3f6c] p-[9px] rounded-sm"
             }
           >
-            {loading ? <span className="loader"></span> : "Login"}
+            {isPending ? <span className="loader"></span> : "Login"}
           </button>
 
           <p>
