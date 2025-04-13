@@ -1,12 +1,16 @@
 import React from "react";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
+  const user = useSelector((state) => state.auth.user);
   return (
     <div>
       <Header />
       <SearchBar />
+
+      {JSON.stringify(user)}
 
       <h1>Welcome to the Mega Mart!</h1>
       <p>This is the home page.</p>
