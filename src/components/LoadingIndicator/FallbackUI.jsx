@@ -1,7 +1,7 @@
 import React from "react";
 import "./FallbackUI.css";
 
-import { MegaMartLogo } from "../../assets/images/imageImports";
+import { MegaMartLogo } from "../../assets/imageImports";
 
 const FallbackUI = () => {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { PageNotFound } from "../assets/images/imageImports";
+import { PageNotFound } from "../assets/imageImports";
 
 import Header from "../components/Header";
 import { Link } from "react-router-dom";

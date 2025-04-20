@@ -1,14 +1,14 @@
 import React from "react";
 import classNames from "classnames";
 
-import { MegaMartLogo } from "../assets/images/imageImports.jsx";
-import { BiSearchAlt2 } from "../assets/images/iconImports.jsx";
+import { MegaMartLogo } from "../assets/imageImports.jsx";
+import { BiSearchAlt2 } from "../assets/iconImports.jsx";
 import { navItems, profileItems } from "../config/constants.jsx";
 import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="bg-[#FFFFFF] p-5 shadow-sm flex items-center justify-between">
+    <header className="bg-[#FFFFFF] p-4 shadow-sm flex items-center justify-between">
       <Link to="/">
         <img
           src={MegaMartLogo}

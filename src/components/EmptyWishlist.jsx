@@ -1,6 +1,6 @@
 import React from "react";
 
-import { EmptyWishList } from "../assets/images/imageImports";
+import { EmptyWishList } from "../assets/imageImports";
 import { Link } from "react-router-dom";
 
 const EmptyWishlist = () => {

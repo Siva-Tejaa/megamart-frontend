@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { MegaMartLogo } from "../assets/images/imageImports";
+import { MegaMartLogo } from "../assets/imageImports";
 import { useLogin } from "../services/hooks/useAuth";
 
 const LoginPage = () => {

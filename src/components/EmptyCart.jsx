@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import { EmptyBag } from "../assets/images/imageImports";
+import { EmptyBag } from "../assets/imageImports";
 
 const EmptyCart = () => {
   return (
