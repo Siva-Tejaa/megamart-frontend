@@ -1,10 +1,10 @@
 import React from "react";
-import { apps, socialMedia } from "../config/constants";
+import { apps, socialMedia, originalReturn } from "../config/constants";
 
 const Footer = () => {
   return (
     <div className="bg-[#FAFBFC] flex flex-col gap-4 p-2">
-      <div className="flex flex-col items-center gap-4 tablet:flex-row justify-around">
+      <div className="flex flex-col items-center gap-4 tablet:flex-row tablet:items-start justify-around">
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-2">
             <div className="uppercase font-bold ">
@@ -33,7 +33,14 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div>100% Guarantee</div>
+        <div className="flex flex-col gap-3">
+          {originalReturn.map((data) => (
+            <div className="flex items-center gap-2 w-64" key={data?.id}>
+              <img src={data?.image} className="w-12 h-10" />
+              <div dangerouslySetInnerHTML={{ __html: data?.name }} />
+            </div>
+          ))}
+        </div>
       </div>
       <div>Popular Searches</div>
       <div className="flex items-start gap-2 justify-between">

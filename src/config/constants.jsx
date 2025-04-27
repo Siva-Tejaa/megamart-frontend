@@ -8,6 +8,8 @@ import {
 import {
   GooglePlay,
   AppStore,
+  Original,
+  ReturnDays,
   Facebook,
   Twitter,
   Youtube,
@@ -105,5 +107,19 @@ export const apps = [
     name: "App Store",
     image: AppStore,
     link: "https://itunes.apple.com/in/app/myntra-indias-fashion-store/id907394059",
+  },
+];
+
+//Orignal, ReturnDays
+export const originalReturn = [
+  {
+    id: 1,
+    name: "<strong>100% ORIGINAL</strong> gurantee for all products at Mega Mart",
+    image: Original,
+  },
+  {
+    id: 2,
+    name: "<strong>Return within 14days</strong> of receiving your order",
+    image: ReturnDays,
   },
 ];

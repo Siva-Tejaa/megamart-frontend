@@ -14,6 +14,10 @@ import Instagram from "./images/socialmedia/Instagram.png";
 import GooglePlay from "./images/apps/GooglePlay.png";
 import AppStore from "./images/apps/AppStore.png";
 
+//Original, Return
+import Original from "./images/footer/Original.png";
+import ReturnDays from "./images/footer/ReturnDays.png";
+
 export {
   MegaMartLogo,
   PageNotFound,
@@ -21,6 +25,8 @@ export {
   EmptyBag,
   GooglePlay,
   AppStore,
+  Original,
+  ReturnDays,
   Facebook,
   Twitter,
   Youtube,
