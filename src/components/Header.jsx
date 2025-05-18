@@ -49,8 +49,8 @@ const Header = () => {
                   {nav.icon}
                   <span
                     className={classNames(
-                      "font-semibold"
-                      // nav.name === "Profile" && "hover:text-[#F51CB3]"
+                      "font-semibold",
+                      nav.name === "Profile" && "hover:text-[#F51CB3]"
                     )}
                   >
                     {nav.name}
@@ -58,7 +58,7 @@ const Header = () => {
                 </>
               )}
               {nav.name === "Profile" && (
-                <nav className="hidden group-hover:flex w-[250px] flex-col gap-[6px] absolute z-10 top-[4.2rem] shadow-md p-4 bg-white">
+                <nav className="hidden group-hover:flex w-[250px] flex-col gap-[6px] absolute z-10 top-[4rem] shadow-md p-4 bg-white">
                   <span className="font-bold">Welcome</span>
                   <span>To access account and manage orders</span>
                   <Link
