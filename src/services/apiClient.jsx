@@ -29,7 +29,7 @@ apiClient.interceptors.response.use(
       const user = JSON.parse(localStorage.getItem("user"));
       if (user) {
         // Only if user is logged in and token is expired
-        localStorage.removeItem("user");
+        localStorage.clear();
         window.location.href = "/login";
       }
     }

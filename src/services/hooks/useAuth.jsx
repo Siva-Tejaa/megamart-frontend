@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginSuccess, logout } from "../../redux/features/authSlice";
 import { signupUser, loginUser, logoutUser } from "../apis/authApi";
-import { setItem, clearStorage } from "../../utils/localStorageUtils";
+import {
+  setItem,
+  removeItem,
+  clearStorage,
+} from "../../utils/localStorageUtils";
+import { getJWTTokenDecodedUserRole } from "../../utils/utils";
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -11,9 +16,16 @@ export const useLogin = () => {
   return useMutation({
     mutationFn: loginUser,
     onSuccess: (response) => {
-      const user = response?.data?.data;
-      dispatch(loginSuccess(user));
+      const data = response?.data?.data;
+      const user = {
+        email: data?.email,
+        firstName: data?.firstName,
+        lastName: data?.lastName,
+      };
+      const role = getJWTTokenDecodedUserRole(data?.accessToken);
+      dispatch(loginSuccess({ user, role }));
       setItem("user", user);
+      setItem("accessToken", data?.accessToken);
       navigate("/", { replace: true });
     },
   });
@@ -35,8 +47,8 @@ export const useLogout = () => {
   return useMutation({
     mutationFn: logoutUser,
     onSuccess: () => {
-      dispatch(logout());
       clearStorage();
+      dispatch(logout());
       navigate("/login");
     },
   });

@@ -1,12 +1,23 @@
 import React from "react";
 import classNames from "classnames";
-
 import { MegaMartLogo } from "../assets/imageImports.jsx";
 import { BiSearchAlt2 } from "../assets/iconImports.jsx";
 import { navItems, profileItems } from "../config/constants.jsx";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useLogout } from "../services/hooks/useAuth.jsx";
 
 const Header = () => {
+  const user = useSelector((state) => state.auth.user);
+
+  const logoutMutation = useLogout();
+
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    console.log("Logging you out...");
+    logoutMutation.mutate();
+  };
+
   return (
     <header className="bg-[#FFFFFF] p-4 shadow-sm flex items-center justify-between">
       <Link to="/">
@@ -82,6 +93,14 @@ const Header = () => {
             </div>
           ))}
         </div>
+        {user && (
+          <button
+            className="cursor-pointer text-white font-bold uppercase bg-[#ff3f6c] p-2 rounded-md"
+            onClick={logoutHandler}
+          >
+            Logout
+          </button>
+        )}
       </div>
     </header>
   );
