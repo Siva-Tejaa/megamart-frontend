@@ -18,6 +18,11 @@ import AppStore from "./images/apps/AppStore.png";
 import Original from "./images/footer/Original.png";
 import ReturnDays from "./images/footer/ReturnDays.png";
 
+//Customer
+import CardBox from "./images/customer/CardBox.png";
+import ShoppingCart from "./images/customer/ShoppingCart.png";
+import WishList from "./images/customer/WishList.png";
+
 export {
   MegaMartLogo,
   PageNotFound,
@@ -31,4 +36,7 @@ export {
   Twitter,
   Youtube,
   Instagram,
+  CardBox,
+  ShoppingCart,
+  WishList,
 };
