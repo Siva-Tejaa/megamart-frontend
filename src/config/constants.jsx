@@ -66,6 +66,40 @@ export const profileItems = [
   },
 ];
 
+//customerProfileNav Items
+export const customerProfileNavItems = [
+  {
+    id: 1,
+    name: "My Account",
+    subTitle: "View & Manage orders and returns",
+    icon: "A",
+  },
+  {
+    id: 2,
+    name: "My Orders",
+    subTitle: "View your orders",
+    icon: "A",
+  },
+  {
+    id: 3,
+    name: "Address Book",
+    subTitle: "View & Manage Addresses",
+    icon: "A",
+  },
+  {
+    id: 4,
+    name: "My Profile",
+    subTitle: "Change your profile details & password",
+    icon: "A",
+  },
+  {
+    id: 5,
+    name: "Help & Support",
+    subTitle: "Contact us for help and support",
+    icon: "A",
+  },
+];
+
 //SocialMedia
 export const socialMedia = [
   {

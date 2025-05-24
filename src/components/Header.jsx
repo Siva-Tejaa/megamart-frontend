@@ -70,14 +70,31 @@ const Header = () => {
               )}
               {nav.name === "Profile" && (
                 <nav className="hidden group-hover:flex w-[250px] flex-col gap-[6px] absolute z-10 top-[4rem] shadow-md p-4 bg-white">
-                  <span className="font-bold">Welcome</span>
-                  <span>To access account and manage orders</span>
-                  <Link
-                    to="/login"
-                    className="text-center border border-solid border-[#F5F5F6] p-2 mb-4 font-bold text-[#F51CB3] hover:border-[#F51CB3]"
-                  >
-                    LOGIN/SIGNUP
-                  </Link>
+                  <p className="flex items-center gap-1">
+                    {user ? (
+                      <span className="font-bold">Hi, {user.firstName}</span>
+                    ) : (
+                      <span className="font-bold">Welcome</span>
+                    )}
+                  </p>
+                  {user ? (
+                    <Link
+                      to="/profile"
+                      className="text-center border border-solid border-[#e1e1e2] p-2 mb-4 font-bold text-[#F51CB3] hover:border-[#F51CB3]"
+                    >
+                      VIEW PROFILE
+                    </Link>
+                  ) : (
+                    <>
+                      <span>To access account and manage orders</span>
+                      <Link
+                        to="/login"
+                        className="text-center border border-solid border-[#F5F5F6] p-2 mb-4 font-bold text-[#F51CB3] hover:border-[#F51CB3]"
+                      >
+                        LOGIN/SIGNUP
+                      </Link>
+                    </>
+                  )}
                   <hr className="mb-2" />
                   {profileItems.map((profileItem) => (
                     <Link
@@ -88,19 +105,22 @@ const Header = () => {
                       {profileItem.name}
                     </Link>
                   ))}
+                  {user && (
+                    <>
+                      <hr className="my-2" />
+                      <button
+                        className="cursor-pointer text-white font-bold uppercase bg-[#e04468] hover:bg-[#ff3f6c] p-2 rounded-md"
+                        onClick={logoutHandler}
+                      >
+                        Logout
+                      </button>
+                    </>
+                  )}
                 </nav>
               )}
             </div>
           ))}
         </div>
-        {user && (
-          <button
-            className="cursor-pointer text-white font-bold uppercase bg-[#ff3f6c] p-2 rounded-md"
-            onClick={logoutHandler}
-          >
-            Logout
-          </button>
-        )}
       </div>
     </header>
   );

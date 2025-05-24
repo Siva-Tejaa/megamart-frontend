@@ -20,6 +20,7 @@ const SearchPage = React.lazy(() => import("./pages/SearchPage"));
 const WishListPage = React.lazy(() => import("./pages/WishListPage"));
 const CartPage = React.lazy(() => import("./pages/CartPage"));
 const NotFoundPage = React.lazy(() => import("./pages/NotFoundPage"));
+const Profilepage = React.lazy(() => import("./pages/ProfilePage"));
 
 // Layouts
 import PublicLayout from "./layouts/PublicLayout";
@@ -47,6 +48,7 @@ const App = () => {
 
         {/* Protected Routes (authentication required) */}
         <Route element={<ProtectedLayout />}>
+          <Route exact path="/profile" element={<Profilepage />} />
           <Route exact path="/wishlist" element={<WishListPage />} />
           <Route exact path="/cart" element={<CartPage />} />
         </Route>
