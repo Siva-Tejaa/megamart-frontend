@@ -51,5 +51,10 @@ export const useLogout = () => {
       dispatch(logout());
       navigate("/login");
     },
+    onError: () => {
+      clearStorage();
+      dispatch(logout());
+      navigate("/login");
+    },
   });
 };

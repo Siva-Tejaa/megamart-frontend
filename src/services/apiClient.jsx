@@ -24,7 +24,7 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error?.response?.status === 401) {
+    if (error?.response?.status === 401 || 403) {
       const user = JSON.parse(localStorage.getItem("user"));
       if (user) {
         // Only if user is logged in and token is expired
