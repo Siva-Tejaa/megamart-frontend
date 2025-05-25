@@ -1,7 +1,25 @@
-import { BiSearchAlt2 } from "react-icons/bi";
+import { BiSearchAlt2, BiSupport } from "react-icons/bi";
 
-import { FaRegUser, FaStar } from "react-icons/fa";
+import {
+  FaRegUser,
+  FaStar,
+  FaBox,
+  FaBoxOpen,
+  FaAddressBook,
+} from "react-icons/fa";
 import { LuHeart } from "react-icons/lu";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { MdAccountCircle } from "react-icons/md";
 
-export { BiSearchAlt2, FaRegUser, LuHeart, HiOutlineShoppingBag, FaStar };
+export {
+  BiSearchAlt2,
+  FaRegUser,
+  LuHeart,
+  HiOutlineShoppingBag,
+  FaStar,
+  FaBox,
+  FaBoxOpen,
+  FaAddressBook,
+  MdAccountCircle,
+  BiSupport,
+};

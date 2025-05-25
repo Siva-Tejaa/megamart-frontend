@@ -14,7 +14,7 @@ const MyAccount = () => {
         <div>Logged in as: {user.email}</div>
       </div>
       <div className="flex gap-2 flex-col laptop:flex-row">
-        <div className="flex-col gap-2 min-w-44 border-2 border-gray-200 p-2 inline-flex rounded-lg">
+        <div className="flex-col gap-2 min-w-44 border-[1px] border-gray-200 p-2 inline-flex rounded-lg bg-gray-100">
           <img
             src={CardBox}
             alt="Card Box"
@@ -25,7 +25,7 @@ const MyAccount = () => {
             <p className="font-bold text-4xl">0</p>
           </div>
         </div>
-        <div className="flex-col gap-2 min-w-44 border-2 border-gray-200 p-2 inline-flex rounded-lg">
+        <div className="flex-col gap-2 min-w-44 border-[1px] border-gray-200 p-2 inline-flex rounded-lg bg-gray-100">
           <img
             src={ShoppingCart}
             alt="Card Box"
@@ -36,7 +36,7 @@ const MyAccount = () => {
             <p className="font-bold text-4xl">0</p>
           </div>
         </div>
-        <div className="flex-col gap-2 min-w-44 border-2 border-gray-200 p-2 inline-flex rounded-lg">
+        <div className="flex-col gap-2 min-w-44 border-[1px] border-gray-200 p-2 inline-flex rounded-lg bg-gray-100">
           <img
             src={WishList}
             alt="Card Box"
@@ -46,6 +46,12 @@ const MyAccount = () => {
             <p className="text-lg">Items in cart</p>
             <p className="font-bold text-4xl">0</p>
           </div>
+        </div>
+      </div>
+      <div className="flex flex-col gap-1">
+        <div className="font-bold text-xl">Recent Orders:</div>
+        <div className="h-52 flex items-center justify-center">
+          No Orders right now
         </div>
       </div>
     </div>

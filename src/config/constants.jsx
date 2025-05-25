@@ -2,6 +2,11 @@ import {
   FaRegUser,
   LuHeart,
   HiOutlineShoppingBag,
+  FaBox,
+  FaBoxOpen,
+  FaAddressBook,
+  MdAccountCircle,
+  BiSupport,
 } from "../assets/iconImports";
 
 //Social Media Images
@@ -70,33 +75,38 @@ export const profileItems = [
 export const customerProfileNavItems = [
   {
     id: 1,
+    key: "myAccount",
     name: "My Account",
     subTitle: "View & Manage orders and returns",
-    icon: "A",
+    icon: <FaBox style={{ fontSize: "1.3em" }} />,
   },
   {
     id: 2,
+    key: "myOrders",
     name: "My Orders",
     subTitle: "View your orders",
-    icon: "A",
+    icon: <FaBoxOpen style={{ fontSize: "1.3em" }} />,
   },
   {
     id: 3,
+    key: "myAddress",
     name: "Address Book",
     subTitle: "View & Manage Addresses",
-    icon: "A",
+    icon: <FaAddressBook style={{ fontSize: "1.3em" }} />,
   },
   {
     id: 4,
+    key: "myProfile",
     name: "My Profile",
     subTitle: "Change your profile details & password",
-    icon: "A",
+    icon: <MdAccountCircle style={{ fontSize: "1.3em" }} />,
   },
   {
     id: 5,
+    key: "helpAndSupport",
     name: "Help & Support",
     subTitle: "Contact us for help and support",
-    icon: "A",
+    icon: <BiSupport style={{ fontSize: "1.3em" }} />,
   },
 ];
 
